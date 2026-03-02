@@ -6,8 +6,6 @@ import math
 
 class Solution:
 
-    ans = None
-
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         self.ans = -math.inf
         self.maxPathAcc(root)
@@ -34,16 +32,10 @@ class Solution:
         return max(res_l_refined, res_r_refined)
 
     def find_opt(self, root, res_child) -> int:
-        if root.val < 0:
-            if res_child < root.val:
-                return root.val
-            else:
-                return root.val + res_child
+        if res_child + root.val > root.val:
+            return res_child + root.val
         else:
-            if res_child < 0:
-                return root.val
-            else:
-                return root.val + res_child
+            return root.val
 
 
 def full_pipeline(p):
